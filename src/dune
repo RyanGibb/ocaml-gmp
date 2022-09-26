@@ -27,6 +27,5 @@
  (deps build.sh.in)
  (mode fallback)
  (action
-  (bash "opam config subst %{target} ||
-     (CORES=`grep '^core id' /proc/cpuinfo | sort -u| wc -l`;
-     sed \"s/\%{jobs}\%/$CORES/g\" %{target}.in > %{target})")))
+  (bash
+    "opam config subst %{target} || (CORES=`grep '^core id' /proc/cpuinfo | sort -u| wc -l`; sed \"s/\%{jobs}%/$CORES/g\" %{target}.in > %{target})")))
