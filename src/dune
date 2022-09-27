@@ -28,4 +28,4 @@
  (mode fallback)
  (action
   (bash
-    "CORES=`ocaml-processor-dump | grep '^core_count' | cut -d ' ' -f2`; sed \"s/\%{jobs}%/$CORES/g\" %{target}.in > %{target}")))
+    "CORES=`(which nproc > /dev/null 2>&1 && nproc) || sysctl -n hw.ncpu 2> /dev/null || echo 1`; sed \"s/\%{jobs}%/$CORES/g\" %{target}.in > %{target}")))
